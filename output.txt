@@ -1,0 +1,44 @@
+==795== Memcheck, a memory error detector
+==795== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==795== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==795== Command: ./a.out
+==795== 
+==795== error calling PR_SET_PTRACER, vgdb might block
+Because of the random nature of SkipList, the skip list levels may not match
+OK: Empty SkipList
+OK: Added 10, 30, 5, 25,
+SKIP LIST DELETED
+OK: Empty SkipList of Depth=3
+    Got   Level: 2 -- -2147483648, 25, 30, 2147483647, 
+Level: 1 -- -2147483648, 25, 30, 2147483647, 
+Level: 0 -- -2147483648, 5, 10, 25, 30, 2147483647, 
+
+ expected Level: 2 -- -2147483648, 25, 2147483647, 
+Level: 1 -- -2147483648, 5, 10, 25, 30, 2147483647, 
+Level: 0 -- -2147483648, 5, 10, 25, 30, 2147483647, 
+
+ERR: SkipList of Depth=3 with 10, 30, 5, 25
+OK: Contains 10
+OK: Contains 30
+OK: Does not contain 71
+SKIP LIST DELETED
+Level: 2 -- -2147483648, 10, 30, 2147483647, 
+Level: 1 -- -2147483648, 5, 10, 30, 2147483647, 
+Level: 0 -- -2147483648, 5, 10, 14, 25, 30, 2147483647, 
+
+REMOVE 2, 5, 14, 30
+Level: 2 -- -2147483648, 10, 2147483647, 
+Level: 1 -- -2147483648, 10, 2147483647, 
+Level: 0 -- -2147483648, 10, 25, 2147483647, 
+
+SKIP LIST DELETED
+Passed: 6/7
+==795== 
+==795== HEAP SUMMARY:
+==795==     in use at exit: 0 bytes in 0 blocks
+==795==   total heap usage: 62 allocs, 62 frees, 80,610 bytes allocated
+==795== 
+==795== All heap blocks were freed -- no leaks are possible
+==795== 
+==795== For counts of detected and suppressed errors, rerun with: -v
+==795== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
